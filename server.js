@@ -52,10 +52,10 @@ function initialUser() {
   User.estimatedDocumentCount((err, count) => {
     if (!err && count === 0) {
       new User({
-        username: "Marcelo",
-        email: "conect2000@hotmail.com",
-        password: "ucusita",
-        role: "60d2a75331deac23284d8b7a"
+        username: "Luciano",
+        email: "montero.luciano@gmail.com",
+        password: "lucho",
+        roles: "60d2a75331deac23284d8b7a"
       }).save(err => {
         if (err) {
           console.log("error", err);
