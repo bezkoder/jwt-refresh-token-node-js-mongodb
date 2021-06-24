@@ -53,7 +53,7 @@ async function savePictureOfTheDate(req, res){
 }
 
 async function savePictureOfTheDay(req, res){
-    const response = await apodMongoService.saveApod(req);
+    const response = await apodMongoService.saveNasa(req);
     res.json(response);
 }
 

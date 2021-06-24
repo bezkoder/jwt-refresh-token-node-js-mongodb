@@ -1,6 +1,6 @@
 const apod = require('../../config/Schema/apod.schema');
 
-async function saveApod(data){
+async function saveNasa(data){
     const apodToday = new apod({
         date: data.date,
         explanation: data.explanation,
@@ -20,4 +20,4 @@ async function saveApod(data){
     return {status: 'Data saved correctly. ok'};
 };
 
-module.exports = {saveApod};
+module.exports = {saveNasa};

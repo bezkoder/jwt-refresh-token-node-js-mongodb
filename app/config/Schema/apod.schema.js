@@ -12,4 +12,4 @@ const apodSchema = new Schema({
     last_modified_date: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('apod', apodSchema);
+module.exports = mongoose.model('apinasa', apodSchema);
