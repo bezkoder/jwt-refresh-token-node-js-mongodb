@@ -13,7 +13,32 @@ module.exports = function(app) {
   app.get("/api/test/all", controller.allAccess);
 
   app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
-  app.get("/api/test/user", controller.userBoard);
+
+  /* Acceso a APIs personales */
+  //app.get("/api/access/a1", [authJwt.verifyToken], controller.userBoard);
+  //app.get("/api/access/a2", [authJwt.verifyToken], controller.userBoard);
+  //app.get("/api/access/a3", [authJwt.verifyToken], controller.userBoard);
+
+  app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
+
+  app.get(
+    "/api/test/apia",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apiaBoard
+  );
+
+  app.get(
+    "/api/test/apib",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apibBoard
+  );
+
+  app.get(
+    "/api/test/apic",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apicBoard
+  );
+
 
   app.get(
     "/api/test/mod",
