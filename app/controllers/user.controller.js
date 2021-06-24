@@ -11,17 +11,14 @@ exports.userBoard = (req, res) => {
 
 exports.apiaBoard = (req, res) => {
   nasaController.getPictureOfTheDay(req, res);
-  res.status(200).send("User Authorized.");
 };
 
 exports.apibBoard = (req, res) => {
-  nasaController.getMarsPicture(req, res);
-  res.status(200).send("User Authorized.");
+  nasaController.getMarsPicture(req, res);  
 };
 
 exports.apicBoard = (req, res) => {
-  nasaController.savePictureOfTheDay(req, res);
-  res.status(200).send("User Authorized.");
+  nasaController.savePictureOfTheDate(req, res);
 };
 
 exports.adminBoard = (req, res) => {

@@ -14,13 +14,6 @@ module.exports = function(app) {
 
   app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
 
-  /* Acceso a APIs personales */
-  //app.get("/api/access/a1", [authJwt.verifyToken], controller.userBoard);
-  //app.get("/api/access/a2", [authJwt.verifyToken], controller.userBoard);
-  //app.get("/api/access/a3", [authJwt.verifyToken], controller.userBoard);
-
-  app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
-
   app.get(
     "/api/test/apia",
     [authJwt.verifyToken, authJwt.isUser],
@@ -33,7 +26,7 @@ module.exports = function(app) {
     controller.apibBoard
   );
 
-  app.get(
+  app.post(
     "/api/test/apic",
     [authJwt.verifyToken, authJwt.isUser],
     controller.apicBoard
