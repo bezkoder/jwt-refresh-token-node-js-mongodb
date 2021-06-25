@@ -10,6 +10,52 @@ module.exports = function(app) {
     next();
   });
 
+  /* Personal develop area for Final Work */
+  app.get(
+    "/api/test/apia",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apiaBoard
+  );
+
+  app.get(
+    "/api/test/apib",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apibBoard
+  );
+
+  app.post(
+    "/api/test/apic",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apicBoard
+  );
+
+  //-------------------------------------
+
+  app.get(
+    "/api/test/apid",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apidBoard
+  );
+
+  app.get(
+    "/api/test/apie",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apieBoard
+  );
+
+  app.get(
+    "/api/test/apif",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apifBoard
+  );
+
+  app.get(
+    "/api/test/apig",
+    [authJwt.verifyToken, authJwt.isUser],
+    controller.apigBoard
+  );
+  /* End of Personal develop area for Final Work */
+
   app.get("/api/test/all", controller.allAccess);
 
   app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);

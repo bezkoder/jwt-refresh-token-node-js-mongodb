@@ -5,7 +5,8 @@ const dbConfig = require("./app/config/db.config");
 const app = express();
 
 let corsOptions = {
-  origin: "http://localhost:8081"
+  //origin: "http://localhost:8081"
+  origin: "*"
 };
 
 app.use(cors(corsOptions));
@@ -18,15 +19,14 @@ app.use(express.urlencoded({ extended: true }));
 
 const db = require("./app/models");
 const Role = db.role;
+const User = db.user;
 
 db.mongoose
-  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
+  .connect(dbConfig.dbUri, dbConfig.mongooseOptions)
   .then(() => {
     console.log("Successfully connect to MongoDB.");
     initial();
+    initialUser();
   })
   .catch(err => {
     console.error("Connection error", err);
@@ -35,7 +35,7 @@ db.mongoose
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to pilarTecno application." });
 });
 
 // routes
@@ -43,10 +43,30 @@ require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+function initialUser() {
+  User.estimatedDocumentCount((err, count) => {
+    if (!err && count === 0) {
+      new User({
+        username: "Marcelo",
+        email: "conect2000@gmail.com",
+        password: "12345678",
+        roles: "60d2a75331deac23284d8b7a"
+      }).save(err => {
+        if (err) {
+          console.log("error", err);
+        }
+
+        console.log("added the 'new user' to Users collection");
+      });
+
+    }
+  });
+}
 
 function initial() {
   Role.estimatedDocumentCount((err, count) => {
@@ -80,6 +100,18 @@ function initial() {
 
         console.log("added 'admin' to roles collection");
       });
+
+      new Role({
+        name: "operator"
+      }).save(err => {
+        if (err) {
+          console.log("error", err);
+        }
+
+        console.log("added 'operator' to roles collection");
+      });
     }
   });
+
+
 }
